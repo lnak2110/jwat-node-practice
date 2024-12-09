@@ -1,4 +1,4 @@
-import { classes, students } from '../data.js';
+import { classes, students } from '../../data.js';
 import { getClassById } from '../services/classService.js';
 import {
   getStudentById,

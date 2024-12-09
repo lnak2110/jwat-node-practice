@@ -1,4 +1,4 @@
-import { classes, increaseCurrentClassId, students } from '../data.js';
+import { classes, increaseCurrentClassId, students } from '../../data.js';
 
 function getClasses() {
   return classes;

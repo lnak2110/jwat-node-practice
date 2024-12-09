@@ -1,4 +1,4 @@
-import { increaseCurrentStudentId, students } from '../data.js';
+import { increaseCurrentStudentId, students } from '../../data.js';
 
 function getStudents() {
   return students;
