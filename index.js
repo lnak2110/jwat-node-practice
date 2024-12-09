@@ -3,7 +3,7 @@ import express from 'express';
 import studentRoute from './routes/studentRoute.js';
 import classRoute from './routes/classRoute.js';
 
-const port = 8000;
+const port = +process.env.PORT || 8000;
 const app = express();
 app.use(bodyParser.json());
 
