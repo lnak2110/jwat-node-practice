@@ -4,7 +4,19 @@ import {
   getStudentById,
   getStudentsByClass,
 } from '../services/studentService.js';
+import { isValidPositiveInteger } from './helpers.js';
 import { responseConflict, resonseFail, responseNotFound } from './response.js';
+
+function checkId(req, res, next) {
+  const { id } = req.params;
+
+  if (!isValidPositiveInteger(id)) {
+    resonseFail(res, 'Invalid ID!');
+    return;
+  }
+
+  next();
+}
 
 function checkClassIdExists(req, res, next) {
   const { id } = req.params;
@@ -35,7 +47,7 @@ function checkStudentIdExists(req, res, next) {
 function checkFieldValid(entity, field = 'name') {
   return function (req, res, next) {
     const value = req.body[field];
-    if (value !== null && value !== undefined && value?.trim() !== '') {
+    if (value && value?.trim() !== '') {
       next();
     } else {
       resonseFail(res, `Invalid ${entity} name!`);
@@ -99,6 +111,7 @@ function checkClassEmpty(req, res, next) {
 }
 
 export {
+  checkId,
   checkClassIdExists,
   checkStudentIdExists,
   checkFieldValid,
