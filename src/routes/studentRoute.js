@@ -10,6 +10,7 @@ import {
 } from '../controllers/studentController.js';
 import {
   checkFieldValid,
+  checkId,
   checkIfClassExistsForStudent,
   checkIfStudentNameExists,
   checkStudentIdExists,
@@ -18,9 +19,15 @@ import {
 const studentRoute = express.Router();
 
 studentRoute.get('/', getStudentsController);
+// ?keyword=
 studentRoute.get('/name', getStudentsByNameController);
 studentRoute.get('/class/:className', getStudentsByClassController);
-studentRoute.get('/:id', checkStudentIdExists, getStudentByIdController);
+studentRoute.get(
+  '/:id',
+  checkId,
+  checkStudentIdExists,
+  getStudentByIdController
+);
 
 studentRoute.post(
   '/',
@@ -33,6 +40,7 @@ studentRoute.post(
 
 studentRoute.patch(
   '/:id',
+  checkId,
   checkStudentIdExists,
   checkFieldValid('student'),
   checkFieldValid('class', 'className'),
@@ -41,6 +49,11 @@ studentRoute.patch(
   updateStudentController
 );
 
-studentRoute.delete('/:id', checkStudentIdExists, deleteStudentController);
+studentRoute.delete(
+  '/:id',
+  checkId,
+  checkStudentIdExists,
+  deleteStudentController
+);
 
 export default studentRoute;
