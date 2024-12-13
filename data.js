@@ -1,9 +1,11 @@
-let currentStudentId = 1;
-let currentClassId = 1;
+let currentStudentId = 0;
+let currentClassId = 0;
 
-const students = [{ id: 1, name: 'Anna', className: '1A' }];
+// { id: 1, name: 'Anna', className: '1A' }
+const students = [];
 
-const classes = [{ id: 1, name: '1A' }];
+// { id: 1, name: '1A' }
+const classes = [];
 
 function increaseCurrentStudentId() {
   return ++currentStudentId;
